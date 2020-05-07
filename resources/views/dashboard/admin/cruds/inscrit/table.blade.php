@@ -1,11 +1,11 @@
 <div class="card-body">
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">{{$title??"Dashboard"}}</h3>
+            <h3 class="card-title">{{$title??"User table"}}</h3>
         </div>
         <div class="card-body">
 
-            @yield('form-body')
+          {{$slot}}
 
         </div>
     </div>

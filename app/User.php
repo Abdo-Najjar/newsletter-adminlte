@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -54,7 +55,7 @@ class User extends Authenticatable
     protected $attributes = [
 
         //set default value for role as aclient
-        'role' => '0',
+        'role' => User::UNSUBSCRIBE,
     ];
 
 
@@ -88,4 +89,15 @@ class User extends Authenticatable
         ]);
     }
 
+
+
+    public function isSubscribe($newsletterId)
+    {
+         return DB::table('newsletter_user')
+        ->select([DB::raw('id')])
+        ->where(DB::raw('user_id') , $this->id)
+        ->where(DB::raw('newsletter_id') , $newsletterId)
+        ->where(DB::raw('inscription') , User::SUBSCRIBE)
+        ->get()->isNotEmpty();
+    }
 }

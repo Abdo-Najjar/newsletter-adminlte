@@ -36,9 +36,7 @@
 <script>
     document.querySelector('#mail-table').addEventListener('click' , function(e){
 
-
         if(e.target.className.includes('delete-btn')){
-
 
 
             Swal.fire({
@@ -55,7 +53,6 @@
                 e.target.parentElement.submit();
             }
             });
-
 
             e.preventDefault();
         }

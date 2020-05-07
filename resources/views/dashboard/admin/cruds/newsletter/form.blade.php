@@ -3,8 +3,8 @@
 @section('form-body')
 
 <div class="row">
-    <div class="form-group">
-        <div class="col-12">
+    <div class="form-group col-12">
+        <div>
             @csrf
 
             @php
@@ -15,7 +15,7 @@
 
             <label for="{{$input}}">Name</label>
 
-            <input type="text" name="{{$input}}"
+            <input  type="text" name="{{$input}}"
                 value="{{  old($input)!==null  ? old($input) :  $newsletter->{$input} }}"
                 class="form-control @error($input) is-invalid @enderror" id="{{$input}}" placeholder="Enter name">
 

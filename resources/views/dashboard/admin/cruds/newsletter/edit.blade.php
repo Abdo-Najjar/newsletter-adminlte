@@ -10,7 +10,7 @@
     <form action="{{route('newsletters.update' , ['newsletter'=>$newsletter])}}" method="POST" role="form" id="quickForm" novalidate="novalidate">
         @method('PATCH')
 
-        @include('dashboard.cruds.newsletter.form')
+        @include('dashboard.admin.cruds.newsletter.form')
 
     </form>
 </div>

@@ -6,13 +6,12 @@
 
 
 @push('css')
-
 {{-- remove scroll from the page --}}
 <style>
     body {
         overflow-y: hidden;
     }
-</style>
+</style> 
 @endpush
 
 <div class="overflow-hidden container-fluid">

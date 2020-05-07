@@ -38,6 +38,8 @@ class UserProfileController extends Controller
 
     public function edit(User $user)
     {
+
+
         $title = "Modifier mon profil ";
 
         return view('profile.edit', compact('user', 'title'));

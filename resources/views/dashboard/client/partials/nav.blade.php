@@ -1,8 +1,9 @@
-<nav class="main-header navbar navbar-expand navbar-navy navbar-navy">
+<nav class="navbar navbar-expand  navbar-navy">
   <!-- Left navbar links -->
   <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+
+    <li class="nav-item d-none d-sm-inline-block">
+      <a href="#" class="nav-link">Accueil</a>
     </li>
 
   </ul>
@@ -33,7 +34,7 @@
 
                 <!--   {{ Auth::user()->name }} -->
 
-                <!--   {{ Auth::user()->last_name }}  -->
+                <!--   {{ Auth::user()->prenom }}  -->
                 <span class="float-right text-sm text-muted"></span>
               </h3>
               <p class="text-sm">Mon profil </p>
@@ -41,8 +42,11 @@
             </div>
           </div>
 
+
+
+
           <div class="dropdown-divider"></div>
-          <a href="{{route('profile.edit')}}" class="dropdown-item">
+          <a href="{{route('profile.edit',Auth::user())}}" class="dropdown-item">
             <i class="fas fa-cog"></i> Paramètres
           </a>
           <div class="dropdown-divider"></div>

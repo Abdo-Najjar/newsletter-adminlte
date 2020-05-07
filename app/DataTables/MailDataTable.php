@@ -21,8 +21,8 @@ class MailDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'dashboard.cruds.mail.action');
-
+            ->startsWithSearch()
+            ->addColumn('action', 'dashboard.admin.cruds.mail.action');
     }
 
     /**

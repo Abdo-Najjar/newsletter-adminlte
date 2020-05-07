@@ -1,9 +1,9 @@
 <?php
 
-use App\Newsletter;
 use App\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,19 +19,50 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
 
     return view('welcome');
-
 });
 
 
-Route::get('/logout', function () {
+Route::get('/test', function () {
 
-    auth()->logout();
 
-    return back();
+
+    // $users =   User::query()->leftJoin('newsletter_user', 'users.id', 'newsletter_user.user_id')
+
+    // ->select(['users.name', 'users.last_name', 'users.email', DB::raw('COUNT(newsletter_user.inscription)')])
+
+    // ->whereDate('newsletter_user.updated_at', '1999-01-24')
+
+    // ->where('inscription', User::SUBSCRIBE)
+
+    // ->groupBy('users.id')
+
+    // ->get();
+
+
+     $users = User::query()->leftJoin('newsletter_user' , 'users.id' , 'newsletter_user.user_id')
+                   ->select(['users.name' , 'users.last_name' , 'users.dob' , 'users.email' ,DB::raw('COUNT(newsletter_user.inscription)')])
+                   ->whereDate('newsletter_user.updated_at' ,  '1999-01-24')
+                   ->where('newsletter_user.inscription' , User::SUBSCRIBE)
+                   ->groupBy('users.id')
+                   ->get();
+
+
+     dd($users);
+
+
 });
+
 
 
 Route::middleware(['auth'])->group(function () {
+
+
+    //for user profile
+    Route::patch('users/profile', 'UserProfileController@update')->name('profile.update');
+
+    Route::get('users/profile', 'UserProfileController@show')->name('profile.show');
+    
+    Route::get('users/profile/edit', 'UserProfileController@edit')->name('profile.edit');
 
 
     Route::middleware(['admin'])->namespace('Admin')->group(function () {
@@ -45,32 +76,28 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('components', 'ComponentController');
 
         Route::resource('types', 'TypeController');
+
+        Route::resource('users', 'UserController');
     });
 
 
     Route::middleware(['client'])->group(function () {
 
-
+        Route::put('{newsletter}/subscribe', 'SubscribtionController@subscribe')->name('subscribe');
+     
+        Route::put('{newsletter}/unsubscribe', 'SubscribtionController@unsubscribe')->name('unsubscribe');
     });
-
-
-    //for user profile
-    Route::patch('users/profile', 'UserProfileController@update')->name('profile.update');
-
-    Route::get('users/profile/edit', 'UserProfileController@edit')->name('profile.edit');
-
-    Route::get('users/profile', 'UserProfileController@show')->name('profile.show');
-
-
-    Route::put('{newsletter}/subscribe', 'SubscribtionController@subscribe')->name('subscribe');
-    Route::put('{newsletter}/unsubscribe', 'SubscribtionController@unsubscribe')->name('unsubscribe');
 
 
 });
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/logout', 'HomeController@logout');
+
+
 
 
 // Route::get('/test' , function(){

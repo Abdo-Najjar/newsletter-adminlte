@@ -36,7 +36,7 @@ class SubscriptionTest extends TestCase
 
         $response->assertOk();
 
-        $response->assertJson(['message' => 'success!']);
+        $response->assertJson(['message' => 'abonnement effectué avec succée']);
 
         $numberOfSubscribtion = 1;
 
@@ -72,7 +72,7 @@ class SubscriptionTest extends TestCase
 
         $response->assertOk();
 
-        $response->assertJson(['message' => 'success!']);
+        $response->assertJson(['message' => 'désabonnement effectué avec succée']);
 
         $numberOfUnsubscribtion = 1;
 

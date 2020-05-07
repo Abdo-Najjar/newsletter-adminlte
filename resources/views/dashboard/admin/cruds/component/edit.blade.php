@@ -11,7 +11,7 @@
         @csrf
         @method('PATCH')
 
-@include('dashboard.cruds.component.form')
+@include('dashboard.admin.cruds.component.form')
  </form>
  </div>
 @endsection
