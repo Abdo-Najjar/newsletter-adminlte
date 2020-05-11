@@ -46,6 +46,8 @@ function confirmMessage()
 
 
 
+
+
 function activeToggle()
 {
 
@@ -69,7 +71,7 @@ function activeToggle()
 
                         type: 'PUT',
 
-                        url: `newsletters/${ newsletter_id }/activate`,
+                        url: `/newsletters/${ newsletter_id }/activate`,
                         success: function (data)
                         {
 
@@ -77,6 +79,7 @@ function activeToggle()
 
                             $('#newsletter-table').DataTable().ajax.reload();
 
+                            $('#usernewsletters-table').DataTable().ajax.reload();
                         }
 
                     });
@@ -88,13 +91,16 @@ function activeToggle()
 
                         type: 'PUT',
 
-                        url: `newsletters/${ newsletter_id }/deactivate`,
+                        url: `/newsletters/${ newsletter_id }/deactivate`,
 
                         success: function (data)
                         {
                             notifaction(data.message);
 
                             $('#newsletter-table').DataTable().ajax.reload();
+
+                            $('#usernewsletters-table').DataTable().ajax.reload();
+
                         }
 
                     });

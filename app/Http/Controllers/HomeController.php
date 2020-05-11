@@ -31,7 +31,7 @@ class HomeController extends Controller
         }
 
         
-        $newsletters = Newsletter::paginate(10);
+        $newsletters = Newsletter::where('active',Newsletter::ACTIVE)->paginate(10);
 
         return view('client.home' , compact('newsletters'));
     }

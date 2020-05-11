@@ -39,7 +39,7 @@
 
                 <div class="text-md mt-2">
                     <strong>Content:</strong>
-                    <article>{{$mail->content}}}</article>
+                    <article>{{$mail->content}}</article>
                 </div>
 
 
