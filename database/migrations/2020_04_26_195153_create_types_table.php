@@ -23,20 +23,22 @@ class CreateTypesTable extends Migration
 
         //put your types values here to insert to the database
         $types = [
+
             [
-                'type' => 'buttons'
+                'type' => 'image'
             ],
             [
-                'type' => 'images'
+                'type' => 'texte'
             ],
             [
-                'type' => 'texts'
+                'type' => 'titre'
             ],
             [
-                'type' => 'titles'
+                'type' => 'logo'
             ],
+
             [
-                'type' => 'icons'
+                'type' => 'bouton'
             ]
 
         ];

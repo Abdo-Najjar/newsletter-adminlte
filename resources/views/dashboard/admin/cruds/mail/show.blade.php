@@ -4,6 +4,14 @@
 
 @section('content')
 
+@push('css')
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>
+@endpush
+
 <div class="py-4 m-3">
 
     <section class="content-header">
@@ -59,18 +67,15 @@
                 </div>
 
 
+                <div class="text-left mt-3">
+
+                    <a class="btn btn-outline-primary"
+                        href="{{route('mails.component' , ['mail'=>$mail->id])}}">Add Compoent</a>
+
+                </div>
 
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
-
-        <!-- Table row -->
-
-
-</div>
-
+    </div>
 </div>
 @endsection
-
-

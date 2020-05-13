@@ -29,7 +29,7 @@ class MailManagementTest extends TestCase
 
         $response = $user->post('mails', [
             'title' => "mail",
-            'content' => "<h1>hello world!</h1>",
+            'content' => "rahama",
             'newsletter_id' => $newsletter->id,
         ]);
 
@@ -39,10 +39,8 @@ class MailManagementTest extends TestCase
 
         $this->assertCount($numberOfCreatedMail, Mail::all());
 
-        $mail = Mail::first();
 
-        $this->assertEquals('mail', $mail->title);
-        $this->assertEquals('<h1>hello world!</h1>', $mail->content);
+        $this->assertDatabaseHas('mails'  , ['title'=>'mail' , 'content'=>'rahama' , 'newsletter_id'=>$newsletter->id]);
     }
 
     public function test_mail_can_be_deleted()

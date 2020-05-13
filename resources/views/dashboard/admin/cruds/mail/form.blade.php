@@ -27,10 +27,10 @@
 
                 @endphp
 
-                <label for="{{$input}}">Title</label>
+                <label for="{{$input}}">Subject</label>
 
                 <input type="text" name="{{$input}}" value="{{  old($input)!==null  ? old($input) :  $mail->{$input} }}"
-                    class="form-control @error($input) is-invalid @enderror" id="{{$input}}" placeholder="Enter Title">
+                    class="form-control @error($input) is-invalid @enderror" id="{{$input}}" placeholder="Enter subject">
 
                 @error($input)
                 <p class="invalid-feedback">{{$message}}</p>
@@ -50,7 +50,7 @@
 
                 @endphp
 
-                <label for="{{$input}}">Content</label>
+                <label for="{{$input}}">Description</label>
 
                 <textarea id="{{$input}}" class="form-control @error($input) is-invalid @enderror" name="{{$input}}"
                     rows="3"
@@ -68,7 +68,7 @@
     <div class="form-group">
         <div class="row">
             <div class="col-md-4">
-                <label>Chose a newsletter :</label>
+                <label>Chose a newsletter</label>
                 <div></div>
                 <select class="custom-select form-control " name="newsletter_id">
 

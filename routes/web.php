@@ -63,8 +63,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('newsletters', 'NewsletterController')->except('delete');
 
-
         Route::patch('newsletters/{newsletter}/active', ['uses' => 'NewsletterController@changeStatus', 'as' => 'newsletters.changeStatus']);
+
+        Route::get('mails/{mail}/components' , 'MailController@component')->name('mails.component');
 
         Route::resource('mails', 'MailController');
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\MailDataTable;
@@ -7,6 +8,7 @@ use App\Http\Requests\Mail\StoreRequest;
 use App\Http\Requests\Mail\UpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Newsletter;
+use App\Type;
 
 class MailController extends Controller
 {
@@ -21,7 +23,7 @@ class MailController extends Controller
 
         $title = "Liste des Mails";
 
-        return $mailDataTable->render('dashboard.admin.cruds.index' ,compact('title') );
+        return $mailDataTable->render('dashboard.admin.cruds.index', compact('title'));
     }
 
     /**
@@ -35,15 +37,15 @@ class MailController extends Controller
 
         $newsletters = Newsletter::all();
 
-        if($newsletters->isEmpty()){
+        if ($newsletters->isEmpty()) {
 
 
             $this->flashErrorMessage('Il faut ajouter une newsletter');
 
-            return redirect()->route('newsletters.create');                
+            return redirect()->route('newsletters.create');
         }
 
-        return view('dashboard.admin.cruds.mail.create' , compact('title','newsletters' , 'mail'));
+        return view('dashboard.admin.cruds.mail.create', compact('title', 'newsletters', 'mail'));
     }
 
     /**
@@ -73,8 +75,10 @@ class MailController extends Controller
         //load the  newsletter relationship
         $mail->load('newsletter');
 
+        $title = "Mail";
+
         // dd($mail);
-        return view('dashboard.admin.cruds.mail.show' , compact('mail'));
+        return view('dashboard.admin.cruds.mail.show', compact('mail', 'title'));
     }
 
     /**
@@ -87,9 +91,9 @@ class MailController extends Controller
     {
         $title = "Modifier un mail";
 
-        $newsletters=Newsletter::all();
+        $newsletters = Newsletter::all();
 
-        return view('dashboard.admin.cruds.mail.edit' , compact('mail' , 'title','newsletters'));
+        return view('dashboard.admin.cruds.mail.edit', compact('mail', 'title', 'newsletters'));
     }
 
     /**
@@ -121,5 +125,16 @@ class MailController extends Controller
         $this->flashDeletedSuccessfully();
 
         return redirect()->back();
+    }
+
+
+    public function component(Mail $mail)
+    {
+
+        $title = "Ajouter un composant";
+
+        $types = Type::all();
+
+        return view('dashboard.admin.cruds.mail.component', compact('mail', 'title', 'types'));
     }
 }
