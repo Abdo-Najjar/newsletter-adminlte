@@ -32,22 +32,38 @@
     <div class="invoice p-3 mb-5">
 
 
-        <div class="text-center">
+        <div id="app">
+
+          
 
 
-            @foreach ($types as $type)
+            <div class="text-center">
 
-            <button type="button" class="btn btn-primary py-2 mr-2 create-component-btn" data-toggle="modal"
-                data-target="#modal-{{$type->type}}">
-                créer {{$type->type}}
-            </button>
 
-            @endforeach
+
+                <type-button  v-for="btn in buttons" :item="btn"></type-button>  
+
+                                
+                {{-- <button type="button" class="btn btn-primary py-2 mr-2 create-component-btn" data-toggle="modal"
+                    data-target="#modal-">
+                    créer @{{btn.type}}
+                </button> --}}
+
+             
+            </div> 
+
+            {{-- incldue the modals section --}}
+            @include('dashboard.admin.cruds.mail.modals')
+
         </div>
-
-        {{-- incldue the modals section --}}
-        @include('dashboard.admin.cruds.mail.modals')
 
     </div>
 </div>
 @endsection
+
+
+@push('js')
+    
+<script src="{{asset('js/app.js')}}" ></script>
+
+@endpush

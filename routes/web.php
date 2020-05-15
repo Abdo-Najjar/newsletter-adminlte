@@ -70,6 +70,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('mails', 'MailController');
 
         Route::resource('components', 'ComponentController');
+        
+        Route::get('types/json' , 'TypeController@getJson');
 
         Route::resource('types', 'TypeController');
     });
@@ -89,6 +91,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 });
+
 
 Auth::routes();
 

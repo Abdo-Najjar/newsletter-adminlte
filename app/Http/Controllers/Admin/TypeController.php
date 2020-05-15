@@ -19,6 +19,14 @@ class TypeController extends Controller
     }
 
     /**
+     * @return \Illuminate\Http\Response
+     */
+    public function getJson()
+    {
+        return response()->json(Type::all());
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

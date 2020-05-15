@@ -133,8 +133,6 @@ class MailController extends Controller
 
         $title = "Ajouter un composant";
 
-        $types = Type::all();
-
-        return view('dashboard.admin.cruds.mail.component', compact('mail', 'title', 'types'));
+        return view('dashboard.admin.cruds.mail.component', compact('mail', 'title'));
     }
 }
